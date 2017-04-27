@@ -10,14 +10,9 @@
 #define FILEPATH "pub.key"
 
 #define HEX(x) setw(2) << setfill('0') << hex << (unsigned)x << flush << dec
-#define DEBUG cout << "DEBUG" << flush << endl;
 
+//Signer::MaxSignatureSize
 #define SIGN_SIZE 132
-
-enum ErrorCodes
-{
-    ok = 0, shmem, forkerr, txt1, txt3, hash, rcv_snd1, rcv_snd2, randerr
-};
 
 struct Message1
 {

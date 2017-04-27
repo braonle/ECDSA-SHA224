@@ -11,13 +11,13 @@ using namespace std;
 
 class Claimer
 {
-    CryptoPP::AutoSeededRandomPool* _pool = 0;
-    ECDSA<ECP, SHA224>::Signer* _signer = 0;
-
+    CryptoPP::AutoSeededRandomPool _pool;
+    ECDSA<ECP, SHA224>::Signer _signer;
 public:
+    enum Error {ok, sender, receiver, txt};
+
     Claimer();
     void SavePublicKey(char *filename);
-    //void PlaceChallenge(Message1 *ptr);
-    void Sign(void* buffer, const void* msg, unsigned msglen);
-    ~Claimer();
+    Claimer::Error Check(Message1* msg, int src, int dest, string* text1);
+    void PlaceResponse(Message1* msg1, Message2 *msg2, int src, int dest, string* text2, string* text3);
 };
