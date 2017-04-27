@@ -21,10 +21,10 @@ public:
 
     static Sync& Instance();
 
-    void msg_place();
-    void msg_wait();
+    void PlaceMessage();
+    void WaitMessage();
 
-    void msg_read();
-    void msg_ack();
+    void ReadMessage();
+    void AckMessage();
 
 };

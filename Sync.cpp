@@ -13,25 +13,25 @@ Sync& Sync::Instance()
     return s;
 }
 
-void Sync::msg_place()
+void Sync::PlaceMessage()
 {
     sops.sem_op = 2;
     semop(semid, &sops, 1);
 }
 
-void Sync::msg_read()
+void Sync::ReadMessage()
 {
     sops.sem_op = -1;
     semop(semid, &sops, 1);
 }
 
-void Sync::msg_ack()
+void Sync::AckMessage()
 {
     sops.sem_op = -1;
     semop(semid, &sops, 1);
 }
 
-void Sync::msg_wait()
+void Sync::WaitMessage()
 {
     sops.sem_op = 0;
     semop(semid, &sops, 1);

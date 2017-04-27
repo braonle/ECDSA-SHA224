@@ -18,25 +18,19 @@ Claimer::~Claimer()
         delete _signer;
 }
 
-void Claimer::get_pk(string filename)
+void Claimer::SavePublicKey(char *filename)
 {
-    ECDSA<ECP, SHA1>::PublicKey public_key;
+    ECDSA<ECP, SHA224>::PublicKey public_key;
     _signer->AccessKey().MakePublicKey(public_key);
 
     if (!public_key.Validate(*_pool, 3))
         throw "Cannot create public key";
 
-    FileSink fs(filename.c_str());
+    FileSink fs(filename, true);
     public_key.Save(fs);
 }
 
-unsigned Claimer::get_sign_len()
-{
-    return _signer->MaxSignatureLength();
-
-}
-
-void Claimer::sign(void *buffer, const void *msg, unsigned msglen)
+void Claimer::Sign(void *buffer, const void *msg, unsigned msglen)
 {
     _signer->SignMessage(*_pool, (byte*)(msg),
                                   msglen, (byte*)(buffer));

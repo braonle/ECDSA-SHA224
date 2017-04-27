@@ -4,7 +4,7 @@
 #include <cryptopp/eccrypto.h>
 #include <cryptopp/oids.h>
 #include <cryptopp/files.h>
-#include <string.h>
+#include "Const.h"
 
 using namespace CryptoPP;
 using namespace std;
@@ -16,8 +16,8 @@ class Claimer
 
 public:
     Claimer();
-    void get_pk(string filename);
-    void sign(void* buffer, const void* msg, unsigned msglen);
-    unsigned get_sign_len();
+    void SavePublicKey(char *filename);
+    //void PlaceChallenge(Message1 *ptr);
+    void Sign(void* buffer, const void* msg, unsigned msglen);
     ~Claimer();
 };
